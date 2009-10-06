@@ -8,7 +8,7 @@ namespace MvcContrib.FluentHtml.Elements
 	/// <summary>
 	/// Base class for HTML input element of type 'checkbox.'
 	/// </summary>
-	public abstract class CheckBoxBase<T> : Input<T>, ICheckable<T> where T : CheckBoxBase<T>
+	public abstract class CheckBoxBase<T> : ICheckable<T> where T : CheckBoxBase<T>
 	{
 		protected CheckBoxBase(string name) : base(HtmlInputType.Checkbox, name)
 		{
@@ -21,48 +21,13 @@ namespace MvcContrib.FluentHtml.Elements
 			elementValue = "true";
 		}
 
-		/// <summary>
-		/// Set the checked attribute.
-		/// </summary>
-		/// <param name="value">Whether the checkbox should be checked.</param>
-		public virtual T Checked(bool value)
-		{
-			if (value)
-			{
-				Attr(HtmlAttribute.Checked, HtmlAttribute.Checked);
-			}
-			else
-			{
-				((IElement)this).RemoveAttr(HtmlAttribute.Checked);
-			}
-			return (T)this;
-		}
-
-		/// <summary>
-		/// Infers the id from name
-		/// </summary>
-		/// <remarks>
-		/// This is to fix the wrong label behavior in the default implementation
-		/// </remarks>
-		protected override void InferIdFromName()
-		{
-			if (!Builder.Attributes.ContainsKey("id"))
-			{
-				Attr("id", string.Format("{0}{1}", 
-					Builder.Attributes["name"], 
-					elementValue == null 
-						? null 
-						: string.Format("_{0}", elementValue)).FormatAsHtmlId());
-			}
-		}
-
 		public override string ToString()
 		{
 			var html = ToCheckBoxOnlyHtml();
 			var hiddenId = "_Hidden";
-			if (((IElement)this).Builder.Attributes.ContainsKey("id"))
+			if (((IElement)this).Builder.Attributes.ContainsKey(HtmlAttribute.Id))
 			{
-				hiddenId = ((IElement)this).Builder.Attributes["id"] + hiddenId;
+				hiddenId = Builder.Attributes[HtmlAttribute.Id] + hiddenId;
 			}
 			var hidden = new Hidden(Builder.Attributes[HtmlAttribute.Name]).Id(hiddenId).Value("false").ToString();
 			return string.Concat(html, hidden);
