@@ -8,7 +8,7 @@ namespace MvcContrib.FluentHtml.Elements
 	/// <summary>
 	/// Base class for HTML input element of type 'checkbox.'
 	/// </summary>
-	public abstract class CheckBoxBase<T> : ICheckable<T> where T : CheckBoxBase<T>
+	public abstract class CheckBoxBase<T> : Checkable<T> where T : CheckBoxBase<T>
 	{
 		protected CheckBoxBase(string name) : base(HtmlInputType.Checkbox, name)
 		{
