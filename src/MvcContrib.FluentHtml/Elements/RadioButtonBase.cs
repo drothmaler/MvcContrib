@@ -8,7 +8,7 @@ namespace MvcContrib.FluentHtml.Elements
 	/// <summary>
 	/// Base class for a radio button.
 	/// </summary>
-	public abstract class RadioButtonBase<T> : ICheckable<T> where T : RadioButtonBase<T>
+	public abstract class RadioButtonBase<T> : Checkable<T> where T : RadioButtonBase<T>
 	{
 		private string _format;
 		protected RadioButtonBase(string name) : base(HtmlInputType.Radio, name) { }

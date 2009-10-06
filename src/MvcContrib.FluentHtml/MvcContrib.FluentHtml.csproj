@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{35AFBC04-8C09-42B7-A56A-EA404688A5B1}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -89,7 +89,7 @@
     <Compile Include="Elements\CheckBoxList.cs" />
     <Compile Include="Elements\CheckBoxListBase.cs" />
     <Compile Include="Behaviors\ISupportsAutoLabeling.cs" />
-    <Compile Include="Elements\ICheckable.cs" />
+    <Compile Include="Elements\Checkable.cs" />
     <Compile Include="Elements\Label.cs" />
     <Compile Include="Elements\LabelBase.cs" />
     <Compile Include="Elements\ResetButton.cs" />

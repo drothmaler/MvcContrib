@@ -5,11 +5,11 @@ using MvcContrib.FluentHtml.Html;
 
 namespace MvcContrib.FluentHtml.Elements
 {
-    public class ICheckable<T> : Input<T> where T : ICheckable<T>
+    public class Checkable<T> : Input<T> where T : Checkable<T>
     {
-        protected ICheckable(string type, string name) : base(type, name) { }
+        protected Checkable(string type, string name) : base(type, name) { }
 
-        protected ICheckable(string type, string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
+        protected Checkable(string type, string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
             : base(type, name, forMember, behaviors) { }
 
         /// <summary>
