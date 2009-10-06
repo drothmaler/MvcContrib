@@ -90,10 +90,8 @@ namespace MvcContrib.FluentHtml
 				model = modelExpression.Compile().Invoke(view.ViewModel);
 			}
 			return model == null
-				? viewData == null
-					? new ViewDataDictionary(view.ViewData)
-					: new ViewDataDictionary(viewData)
-				: new ViewDataDictionary(viewData) { Model = model };
+				? new ViewDataDictionary(viewData ?? view.ViewData)
+                : new ViewDataDictionary(viewData ?? view.ViewData) { Model = model };
 		}
 	}
 }
