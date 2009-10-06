@@ -24,19 +24,5 @@ namespace MvcContrib.FluentHtml.Elements
 		/// <param name="behaviors">Behaviors to apply to the element.</param>
 		public CheckBox(string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors) :
 			base(name, forMember, behaviors) { }
-
-        /// <summary>
-        /// Infers the id from name
-        /// </summary>
-        /// <remarks>
-        /// This is to fix the wrong label behavior in the default implementation
-        /// </remarks>
-        protected override void InferIdFromName()
-        {
-            if (!Builder.Attributes.ContainsKey("id"))
-            {
-                this.Attr("id", string.Format("{0}{1}", Builder.Attributes["name"], (base.elementValue == null) ? null : string.Format("_{0}", base.elementValue)).FormatAsHtmlId());
-            }
-        }
 	}
 }

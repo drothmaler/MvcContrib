@@ -38,6 +38,24 @@ namespace MvcContrib.FluentHtml.Elements
 			return (T)this;
 		}
 
+		/// <summary>
+		/// Infers the id from name
+		/// </summary>
+		/// <remarks>
+		/// This is to fix the wrong label behavior in the default implementation
+		/// </remarks>
+		protected override void InferIdFromName()
+		{
+			if (!Builder.Attributes.ContainsKey("id"))
+			{
+				Attr("id", string.Format("{0}{1}", 
+					Builder.Attributes["name"], 
+					elementValue == null 
+						? null 
+						: string.Format("_{0}", elementValue)).FormatAsHtmlId());
+			}
+		}
+
 		public override string ToString()
 		{
 			var html = ToCheckBoxOnlyHtml();
