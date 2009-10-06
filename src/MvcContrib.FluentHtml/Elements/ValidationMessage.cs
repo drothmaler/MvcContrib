@@ -20,7 +20,7 @@ namespace MvcContrib.FluentHtml.Elements
 			{
 				return null;
 			}
-			if (!builder.Attributes.ContainsKey("class"))
+			if (!Builder.Attributes.ContainsKey("class"))
 			{
 				Class("field-validation-error");
 			}

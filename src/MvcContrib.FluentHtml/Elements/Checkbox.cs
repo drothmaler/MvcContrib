@@ -33,9 +33,9 @@ namespace MvcContrib.FluentHtml.Elements
         /// </remarks>
         protected override void InferIdFromName()
         {
-            if (!base.builder.Attributes.ContainsKey("id"))
+            if (!Builder.Attributes.ContainsKey("id"))
             {
-                this.Attr("id", string.Format("{0}{1}", base.builder.Attributes["name"], (base.elementValue == null) ? null : string.Format("_{0}", base.elementValue)).FormatAsHtmlId());
+                this.Attr("id", string.Format("{0}{1}", Builder.Attributes["name"], (base.elementValue == null) ? null : string.Format("_{0}", base.elementValue)).FormatAsHtmlId());
             }
         }
 	}

@@ -10,11 +10,11 @@ namespace MvcContrib.FluentHtml.Elements
 	/// </summary>
 	public abstract class LiteralBase<T> : Element<T> where T : LiteralBase<T>
 	{
-		protected string format;
-		protected object rawValue;
-		protected string html;
-		protected string overridenId;
-		protected bool htmlWasSpecified;
+        private string format;
+        protected object rawValue;
+        private string html;
+        private string overridenId;
+        private bool htmlWasSpecified;
 
 		protected LiteralBase(string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors) :
 			base(HtmlTag.Span, forMember, behaviors)
@@ -76,11 +76,11 @@ namespace MvcContrib.FluentHtml.Elements
 
 			if(htmlWasSpecified)
 			{
-				builder.InnerHtml = html;
+				Builder.InnerHtml = html;
 			}
 			else
 			{
-				builder.SetInnerText(FormatValue(rawValue));
+				Builder.SetInnerText(FormatValue(rawValue));
 			}
 
 			return base.ToString();
@@ -88,9 +88,9 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected virtual void InferIdFromName()
 		{
-			if(!builder.Attributes.ContainsKey(HtmlAttribute.Id))
+			if(!Builder.Attributes.ContainsKey(HtmlAttribute.Id))
 			{
-				Attr(HtmlAttribute.Id, builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId());
+				Attr(HtmlAttribute.Id, Builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId());
 			}
 		}
 

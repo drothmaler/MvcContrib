@@ -58,9 +58,9 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected virtual void InferIdFromName()
 		{
-			if (!builder.Attributes.ContainsKey(HtmlAttribute.Id))
+            if (!Builder.Attributes.ContainsKey(HtmlAttribute.Id))
 			{
-				Attr(HtmlAttribute.Id, builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId());
+                Attr(HtmlAttribute.Id, Builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId());
 			}
 		}
 

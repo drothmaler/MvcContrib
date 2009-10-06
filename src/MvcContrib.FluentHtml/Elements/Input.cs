@@ -16,13 +16,13 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected Input(string type, string name) : base(HtmlTag.Input, name)
 		{
-			builder.MergeAttribute(HtmlAttribute.Type, type, true);
+            Builder.MergeAttribute(HtmlAttribute.Type, type, true);
 		}
 
 		protected Input(string type, string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
 			: base(HtmlTag.Input, name, forMember, behaviors)
 		{
-			builder.MergeAttribute(HtmlAttribute.Type, type, true);
+            Builder.MergeAttribute(HtmlAttribute.Type, type, true);
 		}
 
 		/// <summary>

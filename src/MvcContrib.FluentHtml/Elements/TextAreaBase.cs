@@ -13,7 +13,7 @@ namespace MvcContrib.FluentHtml.Elements
 	/// </summary>
 	public abstract class TextAreaBase<T> : FormElement<T>, ISupportsModelState where T : TextAreaBase<T>
 	{
-		protected string format;
+		private string format;
 		protected object rawValue;
 
 		protected TextAreaBase(string name) : base(HtmlTag.TextArea, name) { }
@@ -71,11 +71,11 @@ namespace MvcContrib.FluentHtml.Elements
 				{
 					items.Add(FormatValue(item));
 				}
-				builder.SetInnerText(string.Join(Environment.NewLine, items.ToArray()));
+				Builder.SetInnerText(string.Join(Environment.NewLine, items.ToArray()));
 			}
 			else
 			{
-				builder.SetInnerText(FormatValue(rawValue));
+				Builder.SetInnerText(FormatValue(rawValue));
 			}
 			base.PreRender();
 		}

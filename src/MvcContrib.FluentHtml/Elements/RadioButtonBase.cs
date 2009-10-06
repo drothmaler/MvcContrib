@@ -45,10 +45,10 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected override void InferIdFromName()
 		{
-			if (!builder.Attributes.ContainsKey(HtmlAttribute.Id))
+			if (!Builder.Attributes.ContainsKey(HtmlAttribute.Id))
 			{
 				Attr(HtmlAttribute.Id, string.Format("{0}{1}",
-					builder.Attributes[HtmlAttribute.Name],
+					Builder.Attributes[HtmlAttribute.Name],
 					elementValue == null 
 						? null
 						: string.Format("_{0}", elementValue)).FormatAsHtmlId());

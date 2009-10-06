@@ -27,8 +27,8 @@ namespace MvcContrib.FluentHtml.Elements
 		public override string ToString()
 		{
 			return base.ToString() + new Literal(_name)
-			                         	.Id(string.Format("{0}_Literal", builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId()))
-			                         	.Value(builder.Attributes[HtmlAttribute.Value]);
+                                        .Id(string.Format("{0}_Literal", Builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId()))
+                                        .Value(Builder.Attributes[HtmlAttribute.Value]);
 		}
 	}
 }

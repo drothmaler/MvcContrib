@@ -12,8 +12,8 @@ namespace MvcContrib.FluentHtml.Elements
 	/// </summary>
 	public abstract class RadioSetBase<T> : OptionsElementBase<T> where T : RadioSetBase<T>
 	{
-		protected string _format;
-		protected string _itemClass;
+        private string _format;
+        private string _itemClass;
 
 		protected RadioSetBase(string tag, string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
 			: base(tag, name, forMember, behaviors) { }
@@ -27,7 +27,7 @@ namespace MvcContrib.FluentHtml.Elements
 		/// <returns></returns>
 		public virtual T Selected(object selectedValue)
 		{
-			_selectedValues = new List<object> { selectedValue };
+			SelectedValues = new List<object> { selectedValue };
 			return (T)this;
 		}
 
@@ -53,7 +53,7 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected override void PreRender()
 		{
-			builder.InnerHtml = RenderBody();
+            Builder.InnerHtml = RenderBody();
 			base.PreRender();
 		}
 
@@ -64,21 +64,21 @@ namespace MvcContrib.FluentHtml.Elements
 
 		private string RenderBody()
 		{
-			if (_options == null)
+			if (GetOptions() == null)
 			{
 				return null;
 			}
 
-			var name = builder.Attributes[HtmlAttribute.Name];
-			builder.Attributes.Remove(HtmlAttribute.Name);
+            var name = Builder.Attributes[HtmlAttribute.Name];
+            Builder.Attributes.Remove(HtmlAttribute.Name);
 			var sb = new StringBuilder();
-			foreach (var option in _options)
+            foreach (var option in GetOptions())
 			{
-				var value = _valueFieldSelector(option);
-				var radioButton = (new RadioButton(name, forMember, behaviors)
+				var value = GetValue(option);
+				var radioButton = (new RadioButton(name, ((IMemberElement)this).ForMember, behaviors)
 					.Value(value)
 					.Format(_format))
-					.LabelAfter(_textFieldSelector(option).ToString(), _itemClass)
+                    .LabelAfter(GetText(option).ToString(), _itemClass)
 					.Checked(IsSelectedValue(value));
 				if (_itemClass != null)
 				{

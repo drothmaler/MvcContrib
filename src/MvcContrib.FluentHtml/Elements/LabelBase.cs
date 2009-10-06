@@ -10,10 +10,10 @@ namespace MvcContrib.FluentHtml.Elements
 	{
 		protected const string labelIdSuffix = "_DetachedLabel";
 
-		protected string forName;
-		protected object rawValue;
-		protected string format;
-		protected string overridenId;
+        private string forName;
+        private object rawValue;
+		private string format;
+        private string overridenId;
 
 		protected LabelBase(string forName, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors) : 
 			base(HtmlTag.Label, forMember, behaviors)
@@ -58,9 +58,9 @@ namespace MvcContrib.FluentHtml.Elements
 		public override string ToString()
 		{
 			SetId();
-			
-			builder.MergeAttribute(HtmlAttribute.For, forName.FormatAsHtmlId());
-			builder.SetInnerText(FormatValue(rawValue));
+
+            Builder.MergeAttribute(HtmlAttribute.For, forName.FormatAsHtmlId());
+            Builder.SetInnerText(FormatValue(rawValue));
 
 			return base.ToString();
 		}

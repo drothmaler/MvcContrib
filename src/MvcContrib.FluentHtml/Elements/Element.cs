@@ -16,9 +16,9 @@ namespace MvcContrib.FluentHtml.Elements
 	{
 		protected const string LABEL_FORMAT = "{0}_Label";
 
-		protected readonly TagBuilder builder;
-		protected MemberExpression forMember;
-		protected IEnumerable<IBehaviorMarker> behaviors;
+		private readonly TagBuilder builder;
+        private MemberExpression forMember;
+        protected internal IEnumerable<IBehaviorMarker> behaviors;
 
 		protected Element(string tag, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors) : this(tag)
 		{
@@ -38,6 +38,14 @@ namespace MvcContrib.FluentHtml.Elements
 		{
 			get { return builder; }
 		}
+
+        /// <summary>
+        /// TagBuilder object used to generate HTML for elements.
+        /// </summary>
+        protected TagBuilder Builder
+        {
+            get { return builder; }
+        }
 
 		/// <summary>
 		/// Set the 'id' attribute.

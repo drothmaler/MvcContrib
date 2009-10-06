@@ -46,7 +46,7 @@ namespace MvcContrib.FluentHtml.Elements
 			{
 				hiddenId = ((IElement)this).Builder.Attributes["id"] + hiddenId;
 			}
-			var hidden = new Hidden(builder.Attributes[HtmlAttribute.Name]).Id(hiddenId).Value("false").ToString();
+			var hidden = new Hidden(Builder.Attributes[HtmlAttribute.Name]).Id(hiddenId).Value("false").ToString();
 			return string.Concat(html, hidden);
 		}
 

@@ -15,10 +15,10 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected OptionsElementBase(string tag, string name) : base(tag, name) { }
 
-		protected IEnumerable _options;
-		protected Func<object, object> _textFieldSelector;
-		protected Func<object, object> _valueFieldSelector;
-		protected IEnumerable _selectedValues;
+	    private IEnumerable _options;
+        private Func<object, object> _textFieldSelector;
+        private Func<object, object> _valueFieldSelector;
+        private IEnumerable _selectedValues;
 
 		/// <summary>
 		/// The selected values.
@@ -26,9 +26,15 @@ namespace MvcContrib.FluentHtml.Elements
 		public IEnumerable SelectedValues
 		{
 			get { return _selectedValues; }
+            protected set { _selectedValues = value; }
 		}
 
-		public virtual T Options(MultiSelectList value)
+	    protected IEnumerable GetOptions()
+	    {
+	        return _options;
+	    }
+
+	    public virtual T Options(MultiSelectList value)
 		{
 			if (value != null)
 			{
@@ -93,7 +99,7 @@ namespace MvcContrib.FluentHtml.Elements
 			var dict = new Dictionary<string, string>();
 
 			var values = Enum.GetValues(typeof(TEnum));
-	
+
 			foreach(var item in values)
 			{
 				dict.Add(Convert.ToInt32(item).ToString(), item.ToString());
@@ -101,6 +107,16 @@ namespace MvcContrib.FluentHtml.Elements
 
 			return Options(dict);
 		}
+
+        protected object GetText(object @object)
+        {
+            return _textFieldSelector(@object);
+        }
+
+        protected object GetValue(object @object)
+        {
+            return _valueFieldSelector(@object);
+        }
 
 		protected void SetFieldExpressions(string dataValueField, string dataTextField)
 		{

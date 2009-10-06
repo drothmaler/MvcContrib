@@ -6,8 +6,8 @@ namespace MvcContrib.FluentHtml
 {
 	public class ModelViewPage<T> : ViewPage<T>, IViewModelContainer<T> where T : class
 	{
-		protected readonly List<IBehaviorMarker> behaviors = new List<IBehaviorMarker>();
-		protected string htmlNamePrefix;
+		private readonly List<IBehaviorMarker> behaviors = new List<IBehaviorMarker>();
+        private string htmlNamePrefix;
 
 		public ModelViewPage()
 		{

@@ -14,8 +14,8 @@ namespace MvcContrib.FluentHtml.Elements
 	/// <typeparam name="T">The derived type.</typeparam>
 	public abstract class SelectBase<T> : OptionsElementBase<T> where T : SelectBase<T>
 	{
-		protected Option _firstOption;
-		protected bool _hideFirstOption;
+        private Option _firstOption;
+        private bool _hideFirstOption;
 
 		protected SelectBase(string name) : base(HtmlTag.Select, name) {}
 
@@ -87,7 +87,7 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected override void PreRender()
 		{
-			builder.InnerHtml = RenderOptions();
+			Builder.InnerHtml = RenderOptions();
 			base.PreRender();
 		}
 
@@ -98,7 +98,7 @@ namespace MvcContrib.FluentHtml.Elements
 
 		private string RenderOptions()
 		{
-			if(_options == null)
+            if (GetOptions() == null)
 			{
 				return null;
 			}
@@ -110,7 +110,7 @@ namespace MvcContrib.FluentHtml.Elements
 				sb.Append(GetFirstOption());
 			}
 
-			foreach(var options in _options)
+            foreach (var options in GetOptions())
 			{
 				sb.Append(GetOption(options));
 			}
@@ -125,8 +125,8 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected virtual Option GetOption(object option)
 		{
-			var value = _valueFieldSelector(option);
-			var text = _textFieldSelector(option);
+            var value = GetValue(option);
+            var text = GetText(option);
 
 			return new Option()
 				.Value(value == null ? string.Empty : value.ToString())

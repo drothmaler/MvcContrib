@@ -13,8 +13,8 @@ namespace MvcContrib.FluentHtml.Elements
 	/// </summary>
 	public abstract class CheckBoxListBase<T> : OptionsElementBase<T> where T : CheckBoxListBase<T>
 	{
-		protected string _itemFormat;
-		protected string _itemClass;
+        private string _itemFormat;
+        private string _itemClass;
 
 		protected CheckBoxListBase(string tag, string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
 			: base(tag, name, forMember, behaviors) { }
@@ -27,7 +27,7 @@ namespace MvcContrib.FluentHtml.Elements
 		/// <param name="selectedValues">Values matching the values of options to be selected.</param>
 		public virtual T Selected(IEnumerable selectedValues)
 		{
-			_selectedValues = selectedValues;
+			SelectedValues = selectedValues;
 			return (T)this;
 		}
 
@@ -53,7 +53,7 @@ namespace MvcContrib.FluentHtml.Elements
 
 		protected override void PreRender()
 		{
-			builder.InnerHtml = RenderBody();
+            Builder.InnerHtml = RenderBody();
 			base.PreRender();
 		}
 
@@ -64,22 +64,22 @@ namespace MvcContrib.FluentHtml.Elements
 
 		private string RenderBody()
 		{
-			if (_options == null)
+            if (GetOptions() == null)
 			{
 				return null;
 			}
 
-			var name = builder.Attributes[HtmlAttribute.Name];
-			builder.Attributes.Remove(HtmlAttribute.Name);
+            var name = Builder.Attributes[HtmlAttribute.Name];
+            Builder.Attributes.Remove(HtmlAttribute.Name);
 			var sb = new StringBuilder();
 			var i = 0;
-			foreach (var option in _options)
+            foreach (var option in GetOptions())
 			{
-				var value = _valueFieldSelector(option);
-				var checkbox = (new CheckBox(name, forMember, behaviors)
+                var value = GetValue(option);
+                var checkbox = (new CheckBox(name, ((IMemberElement)this).ForMember, behaviors)
 					.Id(string.Format("{0}_{1}", name.FormatAsHtmlId(), i))
 					.Value(value))
-					.LabelAfter(_textFieldSelector(option).ToString(), _itemClass)
+					.LabelAfter(GetText(option).ToString(), _itemClass)
 					.Checked(IsSelectedValue(value));
 				if (_itemClass != null)
 				{

@@ -11,7 +11,7 @@ namespace MvcContrib.FluentHtml.Elements
 	/// <typeparam name="T">The derived type</typeparam>
 	public abstract class TextInput<T> : Input<T>, ISupportsMaxLength where T : TextInput<T>
 	{
-		protected string _format;
+		private string _format;
 
 		protected TextInput(string type, string name) : base(type, name) { }
 

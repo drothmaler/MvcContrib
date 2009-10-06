@@ -33,7 +33,7 @@ namespace MvcContrib.FluentHtml.Elements
 		protected override void InferIdFromName()
 		{
 			Attr(HtmlAttribute.Id, string.Format("{0}_{1}",
-				builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId(), elementValue));
+                Builder.Attributes[HtmlAttribute.Name].FormatAsHtmlId(), elementValue));
 		}
 	}
 }

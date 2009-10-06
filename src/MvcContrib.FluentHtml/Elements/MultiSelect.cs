@@ -17,7 +17,7 @@ namespace MvcContrib.FluentHtml.Elements
 		/// <param name="name">Value of the 'name' attribute of the element.  Also used to derive the 'id' attribute.</param>
 		public MultiSelect(string name) : base(name)
 		{
-			builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
+            Builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
 		}
 
 		/// <summary>
@@ -29,7 +29,7 @@ namespace MvcContrib.FluentHtml.Elements
 		public MultiSelect(string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
 			: base(name, forMember, behaviors)
 		{
-			builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
+            Builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
 		}
 
 		/// <summary>
@@ -38,7 +38,7 @@ namespace MvcContrib.FluentHtml.Elements
 		/// <param name="selectedValues">Values matching the values of options to be selected.</param>
 		public virtual MultiSelect Selected(IEnumerable selectedValues)
 		{
-			_selectedValues = selectedValues;
+			SelectedValues = selectedValues;
 			return this;
 		}
 	}
@@ -55,7 +55,7 @@ namespace MvcContrib.FluentHtml.Elements
         public MultiSelect(string name)
             : base(name)
         {
-            builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
+            Builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace MvcContrib.FluentHtml.Elements
         public MultiSelect(string name, MemberExpression forMember, IEnumerable<IBehaviorMarker> behaviors)
             : base(name, forMember, behaviors)
         {
-            builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
+            Builder.MergeAttribute(HtmlAttribute.Multiple, HtmlAttribute.Multiple, true);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MvcContrib.FluentHtml.Elements
         /// <param name="selectedValues">Values matching the values of options to be selected.</param>
         public virtual MultiSelect<TModel> Selected(IEnumerable selectedValues)
         {
-            _selectedValues = selectedValues;
+            SelectedValues = selectedValues;
             return this;
         }
     }
