@@ -11,5 +11,8 @@ namespace MvcContrib.FluentHtml.Html
 		public const string Label = "label";
 		public const string UnOrderedList = "ul";
 		public const string ListItem = "li";
+        public const string Image = "img";
+        public const string Anchor = "a";
+        public const string Link = Anchor;
 	}
 }

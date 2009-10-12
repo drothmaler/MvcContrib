@@ -16,10 +16,8 @@ namespace MvcContrib.TestHelper
 	/// </summary>
 	public class TestControllerBuilder
 	{
-		protected MockRepository _mocks;
-		protected TempDataDictionary _tempData;
-        protected System.Web.Caching.Cache _cache;
-	    
+		private MockRepository _mocks;
+        private System.Web.Caching.Cache _cache;
 
 	    /// <summary>
 		/// Initializes a new instance of the <see cref="TestControllerBuilder"/> class.
